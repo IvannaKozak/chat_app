@@ -10,6 +10,8 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
   AnimationController controller;
+  Animation animationFirst;
+  Animation animation;
   int myNumber;
 
   @override
@@ -18,12 +20,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 3),
       vsync: this,
       //upperBound: 100.0,
     );
 
+    animationFirst = ColorTween(begin: Color.fromARGB(255, 178, 24, 209), end: Colors.blue).animate(controller);
+    animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
+
     controller.forward();
+
     controller.addListener(() {
       setState(() {});
       myNumber = (controller.value*100).round();
@@ -31,9 +37,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     });
   }
 
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100.withOpacity(controller.value),
+      backgroundColor: animationFirst.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -47,7 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    height: animation.value * 50,
                   ),
                 ),
                 Text(
