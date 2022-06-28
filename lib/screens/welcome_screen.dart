@@ -63,7 +63,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: animation.value * 50,
                   ),
                 ),
-                // DefaultTextStyle(
+                SizedBox(width: 5.0,),             // DefaultTextStyle(
                 //   style: TextStyle(
                 //       color: Color.fromARGB(255, 82, 70, 70),
                 //       fontSize: 45.0,
@@ -73,17 +73,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 //     animatedTexts: [TypewriterAnimatedText('My Chat'),],
                 //   ),
                 // ),
-                SizedBox(
-                  width: 250.0,
-                  child: TextLiquidFill(text: 'MY CHAT', 
+                //SizedBox(
+                 // width: 250.0,child: 
+                 TextLiquidFill(text: 'MY CHAT', 
                     waveColor: Color.fromARGB(255, 255, 255, 255), 
                     boxBackgroundColor: animationFirst.value,
                     textStyle: TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,),
                     boxHeight: 100.0,
+                    boxWidth: 250.0,
                     ),
-                ),
+                
               ],
             ),
             SizedBox(
