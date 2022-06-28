@@ -1,6 +1,7 @@
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -14,7 +15,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   Animation animation;
   int myNumber;
 
-  @override
+  //@override
 
   void initState() {
     super.initState();
@@ -37,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     });
   }
 
-  @override
+  //@override
   void dispose() {
     controller.dispose();
     super.dispose();
@@ -52,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(height: 200,),
+            SizedBox(height: 150,),
             Row(
               children: <Widget>[
                 Hero(
@@ -62,13 +63,26 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: animation.value * 50,
                   ),
                 ),
-                Text(
-                  'FlashChat',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 82, 70, 70),
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
+                // DefaultTextStyle(
+                //   style: TextStyle(
+                //       color: Color.fromARGB(255, 82, 70, 70),
+                //       fontSize: 45.0,
+                //       fontWeight: FontWeight.w900,
+                //     ),
+                //   child: AnimatedTextKit(
+                //     animatedTexts: [TypewriterAnimatedText('My Chat'),],
+                //   ),
+                // ),
+                SizedBox(
+                  width: 250.0,
+                  child: TextLiquidFill(text: 'MY CHAT', 
+                    waveColor: Color.fromARGB(255, 255, 255, 255), 
+                    boxBackgroundColor: animationFirst.value,
+                    textStyle: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,),
+                    boxHeight: 100.0,
+                    ),
                 ),
               ],
             ),
