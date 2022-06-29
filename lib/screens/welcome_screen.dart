@@ -2,6 +2,7 @@ import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chat_app/components/big_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -9,7 +10,8 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation animationFirst;
   Animation animation;
@@ -26,14 +28,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
       //upperBound: 100.0,
     );
 
-    animationFirst = ColorTween(begin: Color.fromARGB(255, 178, 24, 209), end: Colors.blue).animate(controller);
+    animationFirst =
+        ColorTween(begin: Color.fromARGB(255, 178, 24, 209), end: Colors.blue)
+            .animate(controller);
     animation = CurvedAnimation(parent: controller, curve: Curves.decelerate);
 
     controller.forward();
 
     controller.addListener(() {
       setState(() {});
-      myNumber = (controller.value*100).round();
+      myNumber = (controller.value * 100).round();
       print(myNumber);
     });
   }
@@ -53,7 +57,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(height: 150,),
+            SizedBox(
+              height: 150,
+            ),
             Row(
               children: <Widget>[
                 Hero(
@@ -63,79 +69,51 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: animation.value * 50,
                   ),
                 ),
-                SizedBox(width: 5.0,),             // DefaultTextStyle(
-                //   style: TextStyle(
-                //       color: Color.fromARGB(255, 82, 70, 70),
-                //       fontSize: 45.0,
-                //       fontWeight: FontWeight.w900,
-                //     ),
-                //   child: AnimatedTextKit(
-                //     animatedTexts: [TypewriterAnimatedText('My Chat'),],
-                //   ),
-                // ),
-                //SizedBox(
-                 // width: 250.0,child: 
-                 TextLiquidFill(text: 'MY CHAT', 
-                    waveColor: Color.fromARGB(255, 255, 255, 255), 
-                    boxBackgroundColor: animationFirst.value,
-                    textStyle: TextStyle(
+                SizedBox(
+                  width: 5.0,
+                ), 
+                TextLiquidFill(
+                  text: 'MY CHAT',
+                  waveColor: Color.fromARGB(255, 255, 255, 255),
+                  boxBackgroundColor: animationFirst.value,
+                  textStyle: TextStyle(
                     fontSize: 50.0,
-                    fontWeight: FontWeight.bold,),
-                    boxHeight: 100.0,
-                    boxWidth: 250.0,
-                    ),
-                
+                    fontWeight: FontWeight.bold,
+                  ),
+                  boxHeight: 100.0,
+                  boxWidth: 250.0,
+                ),
               ],
             ),
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Color.fromARGB(255, 40, 187, 255),
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            BigButton(
+              colour: Color.fromARGB(255, 40, 187, 255),
+              name: 'Log In',
+              onTap: () {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Color.fromARGB(255, 45, 101, 197),
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
+            BigButton(
+              colour: Color.fromARGB(255, 45, 101, 197),
+              name: 'Register',
+              onTap: () {
+                Navigator.pushNamed(context, RegistrationScreen.id);
+              },
             ),
-            SizedBox(height: 200.0,),
+            SizedBox(
+              height: 200.0,
+            ),
             Center(
               child: Text(
-                    '$myNumber%',
-                    style: TextStyle(
-                      color: Colors.blue.shade900.withOpacity(controller.value),
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+                '$myNumber%',
+                style: TextStyle(
+                  color: Colors.blue.shade900.withOpacity(controller.value),
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
             ),
           ],
         ),
@@ -143,3 +121,5 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     );
   }
 }
+
+
