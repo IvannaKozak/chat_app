@@ -4,8 +4,16 @@ import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registration_screen.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'screens/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:chat_app/firebase_options.dart';
 
-void main() => runApp(FlashChat());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(FlashChat());
+}
 
 class FlashChat extends StatelessWidget {
   @override
